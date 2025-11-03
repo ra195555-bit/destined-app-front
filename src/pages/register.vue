@@ -162,21 +162,23 @@ function goBack() {
 }
 
 async function handleRegister() {
-  const formData = new FormData();
-  formData.append("name", name.value);
-  formData.append("email", email.value);
-  formData.append("password", password.value);
-  formData.append("dateOfBirthday", dateOfBirthday.value);
-  formData.append("gender", gender.value);
-  formData.append("preference", preference.value);
-  if (profileImage.value) {
-    formData.append("profileImage", profileImage.value);
-  }
+  const userData = {
+    name: name.value,
+    email: email.value,
+    password: password.value,
+    dateOfBirthday: dateOfBirthday.value,
+    gender: gender.value,
+    preference: preference.value,
+  };
 
   try {
-    const response = await fetch("/users", {
+    const response = await fetch("/api/users", {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(userData),
     });
 
     const data = await response.json();
