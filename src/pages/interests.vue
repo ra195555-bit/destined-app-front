@@ -121,7 +121,7 @@ async function handleContinue() {
   console.log("Enviando interesses:", selectedInterests.value);
 
   try {
-    const response = await fetch(`/api/discoveryusers/${userId}/interests`, {
+    const response = await fetch(`/users/${userId}/interests`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -103,7 +103,7 @@ async function fetchMatchUser() {
   if (!token) return;
 
   try {
-    const response = await fetch(`/api/matches/${matchId.value}`, {
+    const response = await fetch(`/matches/${matchId.value}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -116,7 +116,7 @@ async function fetchMatchUser() {
           ? match.userTwoId
           : match.userOneId;
 
-      const userResponse = await fetch(`/api/users/${otherUserId}`, {
+      const userResponse = await fetch(`/users/${otherUserId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -145,7 +145,7 @@ async function fetchMessages() {
   }
 
   try {
-    const response = await fetch(`/api/matches/${matchId.value}/messages`, {
+    const response = await fetch(`/matches/${matchId.value}/messages`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -176,7 +176,7 @@ async function handleSendMessage() {
   newMessage.value = "";
 
   try {
-    const response = await fetch(`/api/matches/${matchId.value}/messages`, {
+    const response = await fetch(`/matches/${matchId.value}/messages`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

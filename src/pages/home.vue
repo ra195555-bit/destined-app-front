@@ -110,7 +110,7 @@ async function fetchUsers() {
 
   console.log("Buscando perfis do /discovery...");
   try {
-    const response = await fetch("/api/discovery", {
+    const response = await fetch("/discovery", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -149,7 +149,7 @@ async function handleLike() {
   if (!token) return;
 
   try {
-    const response = await fetch("/api/likes", {
+    const response = await fetch("/likes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

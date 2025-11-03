@@ -87,7 +87,7 @@ async function fetchMatches() {
 
   console.log("Buscando matches do /matches...");
   try {
-    const response = await fetch("/api/matches", {
+    const response = await fetch("/matches", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

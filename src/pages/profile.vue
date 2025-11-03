@@ -192,7 +192,7 @@ async function handleImageUpload() {
   formData.append("profileImage", profileImage.value);
 
   try {
-    const response = await fetch(`/api/users/${userId}/profile-image`, {
+    const response = await fetch(`/users/${userId}/profile-image`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -232,7 +232,7 @@ async function handleSave() {
   console.log("Salvando nova preferência:", newPreference);
 
   try {
-    const response = await fetch(`/api/users/${userId}/preference`, {
+    const response = await fetch(`/users/${userId}/preference`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

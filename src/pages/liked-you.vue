@@ -87,7 +87,7 @@ async function fetchLikedUsers() {
 
   console.log("Buscando perfis do /likes/who-liked-me...");
   try {
-    const response = await fetch("/api/likes/who-liked-me", {
+    const response = await fetch("/likes/who-liked-me", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
