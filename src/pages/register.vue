@@ -174,7 +174,7 @@ async function handleRegister() {
   }
 
   try {
-    const response = await fetch("/api/discovery/users", {
+    const response = await fetch("/api/users", {
       method: "POST",
       body: formData,
     });
@@ -243,7 +243,7 @@ async function handleRegister() {
 
 .avatar-wrapper {
   position: relative;
-  /* Precisamos disso para o v-btn absoluto se alinhar
+  /* Precisa disso para o v-btn absoluto se alinhar
      ao avatar e não ao <v-col> */
   display: inline-block;
 }
