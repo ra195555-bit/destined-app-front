@@ -149,7 +149,7 @@ async function handleLike() {
   if (!token) return;
 
   try {
-    const response = await fetch("/api/discovery/likes", {
+    const response = await fetch("/api/likes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -168,7 +168,7 @@ async function handleLike() {
         // 1. Pega a nossa foto (do cofre)
         const myPhoto =
           authStore.user.photos && authStore.user.photos.length > 0
-            ? `/api/discovery/${authStore.user.photos[0]}`
+            ? `/api/${authStore.user.photos[0]}`
             : "https://via.placeholder.com/100?text=Eu";
 
         // 2. Pega a foto do match (do card)

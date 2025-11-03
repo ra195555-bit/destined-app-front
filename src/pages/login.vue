@@ -100,7 +100,7 @@ async function handleLogin() {
   };
 
   try {
-    const response = await fetch("/api/discovery/login", {
+    const response = await fetch("/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

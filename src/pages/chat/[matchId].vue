@@ -103,7 +103,7 @@ async function fetchMatchUser() {
   if (!token) return;
 
   try {
-    const response = await fetch(`/api/discovery/matches/${matchId.value}`, {
+    const response = await fetch(`/api/matches/${matchId.value}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -116,7 +116,7 @@ async function fetchMatchUser() {
           ? match.userTwoId
           : match.userOneId;
 
-      const userResponse = await fetch(`/api/discovery/users/${otherUserId}`, {
+      const userResponse = await fetch(`/api/users/${otherUserId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -126,9 +126,7 @@ async function fetchMatchUser() {
         const { user } = await userResponse.json();
         matchUser.value = {
           ...user,
-          photos: user.photos
-            ? user.photos.map((p) => `/api/discovery/${p}`)
-            : [],
+          photos: user.photos ? user.photos.map((p) => `/api/${p}`) : [],
         };
       }
     }
@@ -147,16 +145,13 @@ async function fetchMessages() {
   }
 
   try {
-    const response = await fetch(
-      `/api/discovery/matches/${matchId.value}/messages`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await fetch(`/api/matches/${matchId.value}/messages`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await response.json();
     console.log("Fetched messages:", data);
     if (response.ok) {
@@ -181,17 +176,14 @@ async function handleSendMessage() {
   newMessage.value = "";
 
   try {
-    const response = await fetch(
-      `/api/discovery/matches/${matchId.value}/messages`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ content: content }),
-      }
-    );
+    const response = await fetch(`/api/matches/${matchId.value}/messages`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ content: content }),
+    });
 
     const newMsgData = await response.json();
 

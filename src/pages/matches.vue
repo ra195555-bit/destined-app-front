@@ -87,7 +87,7 @@ async function fetchMatches() {
 
   console.log("Buscando matches do /matches...");
   try {
-    const response = await fetch("/api/discovery/matches", {
+    const response = await fetch("/api/matches", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -100,9 +100,7 @@ async function fetchMatches() {
     if (response.ok) {
       const formattedMatches = data.map((match) => ({
         ...match,
-        photos: match.photos
-          ? match.photos.map((p) => `/api/discovery/${p}`)
-          : [],
+        photos: match.photos ? match.photos.map((p) => `/api/${p}`) : [],
       }));
 
       matches.value = formattedMatches;

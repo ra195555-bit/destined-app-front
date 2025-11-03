@@ -158,7 +158,7 @@ onMounted(() => {
     dateOfBirthday.value = formatDateForInput(authStore.user.dateOfBirthday);
 
     userPhotos.value = authStore.user.photos
-      ? authStore.user.photos.map((p) => `/api/discovery/${p}`)
+      ? authStore.user.photos.map((p) => `/api/${p}`)
       : [];
   } else {
     router.push("/login");
@@ -192,16 +192,13 @@ async function handleImageUpload() {
   formData.append("profileImage", profileImage.value);
 
   try {
-    const response = await fetch(
-      `/api/discovery/users/${userId}/profile-image`,
-      {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      }
-    );
+    const response = await fetch(`/api/users/${userId}/profile-image`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
 
     const data = await response.json();
 
@@ -209,7 +206,7 @@ async function handleImageUpload() {
       console.log("Foto de perfil atualizada!", data.message);
       authStore.setAuthData(token, data.user);
       userPhotos.value = data.user.photos
-        ? data.user.photos.map((p) => `/api/discovery/${p}`)
+        ? data.user.photos.map((p) => `/api/${p}`)
         : [];
       profileImage.value = null;
     } else {
@@ -235,7 +232,7 @@ async function handleSave() {
   console.log("Salvando nova preferência:", newPreference);
 
   try {
-    const response = await fetch(`/api/discovery/users/${userId}/preference`, {
+    const response = await fetch(`/api/users/${userId}/preference`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
