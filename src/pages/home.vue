@@ -110,7 +110,7 @@ async function fetchUsers() {
 
   console.log("Buscando perfis do /discovery...");
   try {
-    const response = await fetch("http://localhost:5000/discovery", {
+    const response = await fetch("/api/discovery", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -149,7 +149,7 @@ async function handleLike() {
   if (!token) return;
 
   try {
-    const response = await fetch("http://localhost:5000/likes", {
+    const response = await fetch("/api/discovery/likes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -168,7 +168,7 @@ async function handleLike() {
         // 1. Pega a nossa foto (do cofre)
         const myPhoto =
           authStore.user.photos && authStore.user.photos.length > 0
-            ? `http://localhost:5000/${authStore.user.photos[0]}`
+            ? `/api/discovery/${authStore.user.photos[0]}`
             : "https://via.placeholder.com/100?text=Eu";
 
         // 2. Pega a foto do match (do card)

@@ -87,7 +87,7 @@ async function fetchMatches() {
 
   console.log("Buscando matches do /matches...");
   try {
-    const response = await fetch("http://localhost:5000/matches", {
+    const response = await fetch("/api/discovery/matches", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -101,7 +101,7 @@ async function fetchMatches() {
       const formattedMatches = data.map((match) => ({
         ...match,
         photos: match.photos
-          ? match.photos.map((p) => `http://localhost:5000/${p}`)
+          ? match.photos.map((p) => `/api/discovery/${p}`)
           : [],
       }));
 

@@ -6,7 +6,9 @@
         <v-img v-if="matchUser?.photos?.[0]" :src="matchUser.photos[0]"></v-img>
         <v-icon v-else icon="mdi-account-outline"></v-icon>
       </v-avatar>
-      <v-toolbar-title class="ml-2">{{ matchUser?.name || '...' }}</v-toolbar-title>
+      <v-toolbar-title class="ml-2">{{
+        matchUser?.name || "..."
+      }}</v-toolbar-title>
     </v-app-bar>
 
     <v-container class="flex-grow-1 overflow-y-auto pa-4">
@@ -101,36 +103,31 @@ async function fetchMatchUser() {
   if (!token) return;
 
   try {
-    const response = await fetch(
-      `http://localhost:5000/matches/${matchId.value}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await fetch(`/api/discovery/matches/${matchId.value}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     if (response.ok) {
       const match = await response.json();
-      const otherUserId = match.userOneId.toString() === authStore.user.id
+      const otherUserId =
+        match.userOneId.toString() === authStore.user.id
           ? match.userTwoId
           : match.userOneId;
-      
-      const userResponse = await fetch(
-        `http://localhost:5000/users/${otherUserId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+
+      const userResponse = await fetch(`/api/discovery/users/${otherUserId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (userResponse.ok) {
         const { user } = await userResponse.json();
         matchUser.value = {
           ...user,
           photos: user.photos
-            ? user.photos.map((p) => `http://localhost:5000/${p}`)
+            ? user.photos.map((p) => `/api/discovery/${p}`)
             : [],
         };
       }
@@ -151,7 +148,7 @@ async function fetchMessages() {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/matches/${matchId.value}/messages`,
+      `/api/discovery/matches/${matchId.value}/messages`,
       {
         method: "GET",
         headers: {
@@ -185,7 +182,7 @@ async function handleSendMessage() {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/matches/${matchId.value}/messages`,
+      `/api/discovery/matches/${matchId.value}/messages`,
       {
         method: "POST",
         headers: {

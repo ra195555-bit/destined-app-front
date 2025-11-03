@@ -36,19 +36,20 @@
             lg="2"
             class="pa-2"
           >
-                            <v-img
-                              :src="
-                                user.photos && user.photos.length > 0
-                                  ? user.photos[0]
-                                  : 'https://via.placeholder.com/250x300?text=Sem+Foto'
-                              "
-                              class="user-card"
-                              rounded="xl"
-                              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%"
-                              aspect-ratio="9/16"
-                              cover
-                              style="width: 40vh;"
-                            >              <v-row class="fill-height ma-0" align="end" justify="start">
+            <v-img
+              :src="
+                user.photos && user.photos.length > 0
+                  ? user.photos[0]
+                  : 'https://via.placeholder.com/250x300?text=Sem+Foto'
+              "
+              class="user-card"
+              rounded="xl"
+              gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%"
+              aspect-ratio="9/16"
+              cover
+              style="width: 40vh"
+            >
+              <v-row class="fill-height ma-0" align="end" justify="start">
                 <v-col>
                   <div class="card-title pa-2">
                     {{ user.name }}
@@ -86,7 +87,7 @@ async function fetchLikedUsers() {
 
   console.log("Buscando perfis do /likes/who-liked-me...");
   try {
-    const response = await fetch("http://localhost:5000/likes/who-liked-me", {
+    const response = await fetch("/api/discovery/likes/who-liked-me", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
