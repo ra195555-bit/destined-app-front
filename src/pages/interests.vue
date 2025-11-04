@@ -121,15 +121,18 @@ async function handleContinue() {
   console.log("Enviando interesses:", selectedInterests.value);
 
   try {
-    const response = await fetch(`/users/${userId}/interests`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        // O back-end precisa do token para o authMiddleware!
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ interests: selectedInterests.value }),
-    });
+    const response = await fetch(
+      `https://destined-app-back.onrender.com/api/users/${userId}/interests`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          // O back-end precisa do token para o authMiddleware!
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ interests: selectedInterests.value }),
+      }
+    );
 
     const data = await response.json();
 

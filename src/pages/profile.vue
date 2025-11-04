@@ -192,13 +192,16 @@ async function handleImageUpload() {
   formData.append("profileImage", profileImage.value);
 
   try {
-    const response = await fetch(`/users/${userId}/profile-image`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
+    const response = await fetch(
+      `https://destined-app-back.onrender.com/api/users/${userId}/profile-image`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      }
+    );
 
     const data = await response.json();
 

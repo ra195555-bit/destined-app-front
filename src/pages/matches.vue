@@ -87,13 +87,16 @@ async function fetchMatches() {
 
   console.log("Buscando matches do /matches...");
   try {
-    const response = await fetch("/matches", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://destined-app-back.onrender.com/api/matches",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const data = await response.json();
 

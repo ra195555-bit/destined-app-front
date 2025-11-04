@@ -110,13 +110,16 @@ async function fetchUsers() {
 
   console.log("Buscando perfis do /discovery...");
   try {
-    const response = await fetch("/discovery", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      "https://destined-app-back.onrender.com/api/discovery",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const data = await response.json();
 
