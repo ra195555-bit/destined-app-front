@@ -158,7 +158,7 @@ onMounted(() => {
     dateOfBirthday.value = formatDateForInput(authStore.user.dateOfBirthday);
 
     userPhotos.value = authStore.user.photos
-      ? authStore.user.photos.map((p) => `/api/${p}`)
+      ? authStore.user.photos.map((p) => `https://destined-app-back.onrender.com/${p}`)
       : [];
   } else {
     router.push("/login");
