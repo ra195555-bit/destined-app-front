@@ -92,7 +92,6 @@ const router = useRouter();
 const isLoading = ref(true);
 const usersToDiscover = ref([]);
 
-// 'onMounted' roda automaticamente quando a página é criada
 onMounted(() => {
   fetchUsers();
 });
@@ -102,8 +101,6 @@ async function fetchUsers() {
 
   if (!token) {
     console.error("Erro: Ninguém logado para buscar perfis.");
-    // (Idealmente, o 'router' deveria proteger esta página,
-    // mas por enquanto, vamos só parar)
     isLoading.value = false;
     return;
   }
@@ -124,7 +121,7 @@ async function fetchUsers() {
     const data = await response.json();
 
     if (response.ok) {
-      usersToDiscover.value = data; // Coloca os usuários na "caixinha"
+      usersToDiscover.value = data;
       console.log("Perfis carregados:", data);
     } else {
       console.error("Erro ao buscar perfis:", data.message);
@@ -132,13 +129,12 @@ async function fetchUsers() {
   } catch (error) {
     console.error("Erro de rede (fetchUsers):", error);
   } finally {
-    // Independentemente de sucesso ou erro, paramos de carregar
     isLoading.value = false;
   }
 }
 
 function removeCurrentUserFromList() {
-  usersToDiscover.value.shift(); // 'shift()' remove o primeiro item do array
+  usersToDiscover.value.shift();
 }
 
 function handleDislike() {
@@ -152,14 +148,17 @@ async function handleLike() {
   if (!token) return;
 
   try {
-    const response = await fetch("/likes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ likedId: userToLike.id }),
-    });
+    const response = await fetch(
+      "https://destined-app-back.onrender.com/api/likes",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ likedId: userToLike.id }),
+      }
+    );
 
     const data = await response.json();
 
@@ -168,23 +167,19 @@ async function handleLike() {
         console.log("É UM MATCH! Navegando para a tela de sucesso...");
         console.log("userToLike:", userToLike);
 
-        // 1. Pega a nossa foto (do cofre)
         const myPhoto =
           authStore.user.photos && authStore.user.photos.length > 0
-            ? `/api/${authStore.user.photos[0]}`
+            ? `https://destined-app-back.onrender.com/api/${authStore.user.photos[0]}`
             : "https://via.placeholder.com/100?text=Eu";
 
-        // 2. Pega a foto do match (do card)
         const theirPhoto =
           userToLike.photos && userToLike.photos.length > 0
-            ? userToLike.photos[0] // A URL já está completa
+            ? userToLike.photos[0]
             : "https://via.placeholder.com/100?text=Match";
 
-        // 3. NAVEGA PARA A NOVA PÁGINA (enviando os dados pela URL)
         router.push({
-          name: "/match-success", // O nome da rota é definido pelo vue-router-auto
+          name: "/match-success",
           query: {
-            // Os dados que a página precisa
             matchId: data.matchId,
             myPhoto: myPhoto,
             theirPhoto: theirPhoto,
@@ -192,10 +187,8 @@ async function handleLike() {
           },
         });
 
-        // Remove o usuário da lista (para não vê-lo novamente)
         removeCurrentUserFromList();
       } else {
-        // Não foi match, só um like.
         console.log("Like registrado.", data.message);
         removeCurrentUserFromList();
       }

@@ -68,10 +68,10 @@ definePage({
 const router = useRouter();
 const authStore = useAuthStore();
 
-// 1. Lista de interesses que o usuário selecionou
+
 const selectedInterests = ref([]);
 
-// 2. Lista de TODOS os interesses disponíveis (com ícones do mdi)
+
 const allInterests = ref([
   { text: "Photography", value: "photography", icon: "mdi-camera" },
   { text: "Cooking", value: "cooking", icon: "mdi-chef-hat" },
@@ -99,22 +99,20 @@ function toggleInterest(value) {
 }
 
 function goBack() {
-  router.go(-1); // Volta (provavelmente para o Login)
+  router.go(-1); 
 }
 
 function skip() {
-  // Se pular, vai direto para a home
   router.push("/home");
 }
 
 async function handleContinue() {
-  // Pega o token e o ID do usuário do "cofre"
+  
   const token = authStore.token;
   const userId = authStore.user.id;
 
   if (!token || !userId) {
     console.error("Erro: Usuário não está logado para salvar interesses.");
-    // Se algo der muito errado, manda para o login
     return router.push("/login");
   }
 
@@ -127,7 +125,6 @@ async function handleContinue() {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          // O back-end precisa do token para o authMiddleware!
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ interests: selectedInterests.value }),
@@ -138,7 +135,7 @@ async function handleContinue() {
 
     if (response.ok) {
       console.log("Interesses salvos!", data.message);
-      // Sucesso! Agora sim, vamos para a tela principal.
+      
       router.push("/home");
     } else {
       console.error("Erro do servidor:", data.message);
@@ -184,7 +181,7 @@ async function handleContinue() {
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
   border: 2px solid transparent;
-  margin: 8px 4px; /* Espaçamento */
+  margin: 8px 4px; 
 }
 
 /* Estilo do chip QUANDO SELECIONADO (v-chip--selected) */
@@ -193,13 +190,13 @@ async function handleContinue() {
   background-color: #1a0a33;
   color: white;
 
-  /* A "borda" gradiente mágica */
+  /* A borda gradiente  */
   border: 2px solid;
   border-image-slice: 1;
   border-image-source: linear-gradient(to right, #da327f, #a134d1);
 }
 
-/* Botão "Continue" (igual ao do login/register) */
+/* Botão Continue (igual ao do login/register) */
 .custom-gradient-btn {
   background: linear-gradient(to right, #da327f 0%, #a134d1 100%) !important;
   color: white !important;

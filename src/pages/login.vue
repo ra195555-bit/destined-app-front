@@ -88,9 +88,8 @@ const password = ref("");
 const router = useRouter();
 const authStore = useAuthStore();
 
-// Função para o botão "Voltar"
 function goBack() {
-  router.go(-1); // Volta para a página anterior (Splash)
+  router.go(-1);
 }
 
 async function handleLogin() {
@@ -143,28 +142,26 @@ async function handleLogin() {
   font-size: 1.1rem;
 }
 
-/* 4. REVERTEMOS O CSS DO INPUT para o estilo simples */
+/*  CSS DO INPUT  */
 .custom-input :deep(.v-field__overlay) {
-  /* Fundo escuro semi-transparente */
   background-color: rgba(255, 255, 255, 0.1);
 }
 .custom-input :deep(.v-field__outline) {
-  border-style: none !important; /* Sem borda */
+  border-style: none !important;
 }
 .custom-input :deep(.v-field__input) {
-  color: white !important; /* Texto branco */
+  color: white !important;
 }
 .custom-input :deep(.v-label.v-field-label) {
-  color: rgba(255, 255, 255, 0.7) !important; /* Label cinza claro */
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
-/* 5. Botão com gradiente roxo/rosa e arredondado */
+/*  Botão com gradiente roxo/rosa e arredondado */
 .custom-gradient-btn {
-  /* Gradiente da imagem-alvo */
   background: linear-gradient(to right, #da327f 0%, #a134d1 100%) !important;
   color: white !important;
   font-weight: bold;
-  border-radius: 24px; /* Arredondado como os inputs */
+  border-radius: 24px;
 }
 
 .signup-link {
@@ -173,7 +170,6 @@ async function handleLogin() {
   font-weight: bold;
 }
 
-/* 6. A CORREÇÃO DE ALTURA */
 .login-layout-container {
   min-height: 100vh;
 }

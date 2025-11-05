@@ -156,9 +156,8 @@ const imageUrl = computed(() => {
   return profileImage.value ? URL.createObjectURL(profileImage.value) : null;
 });
 
-// Função para o botão "Voltar"
 function goBack() {
-  router.go(-1); // Volta para a página anterior (Splash)
+  router.go(-1);
 }
 
 async function handleRegister() {
@@ -199,12 +198,10 @@ async function handleRegister() {
 </script>
 
 <style scoped>
-/* A folha de fundo é transparente, pois o fundo global já é roxo */
 .custom-sheet {
   background-color: transparent !important;
 }
 
-/* Label (título) para cada campo do formulário */
 .form-label {
   font-weight: bold;
   margin-bottom: 8px;
@@ -223,10 +220,6 @@ async function handleRegister() {
 }
 .custom-input :deep(.v-label.v-field-label) {
   color: rgba(255, 255, 255, 0.7) !important;
-}
-/* Cor do ícone de calendário no campo de data */
-.custom-input :deep(input[type="date"]::-webkit-calendar-picker-indicator) {
-  filter: invert(1);
 }
 
 /* Estilo dos botões de rádio */
@@ -257,9 +250,6 @@ async function handleRegister() {
   position: absolute;
   bottom: 0;
   right: 0;
-
-  /* Adiciona uma borda branca ao redor do botão
-     para separá-lo do avatar, como na foto */
-  border: 3px solid #1a0a33; /* Cor do fundo do app */
+  border: 3px solid #1a0a33;
 }
 </style>

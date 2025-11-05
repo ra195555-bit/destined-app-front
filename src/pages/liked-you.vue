@@ -70,9 +70,8 @@ import { useAuthStore } from "../stores/auth";
 
 const authStore = useAuthStore();
 const isLoading = ref(true);
-const likedUsers = ref([]); // "Caixinha" para guardar quem curtiu
+const likedUsers = ref([]);
 
-// Roda assim que a página é aberta
 onMounted(() => {
   fetchLikedUsers();
 });
@@ -101,8 +100,6 @@ async function fetchLikedUsers() {
     const data = await response.json();
 
     if (response.ok) {
-      // O back-end já está enviando a URL completa,
-      // então não precisamos formatar!
       console.log("Perfis (Liked You) carregados:", data);
       likedUsers.value = data;
     } else {
@@ -125,7 +122,6 @@ async function fetchLikedUsers() {
 .card-title {
   font-size: 1rem;
   font-weight: bold;
-  /* Garante que o nome fique em uma linha */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

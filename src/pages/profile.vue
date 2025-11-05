@@ -235,14 +235,17 @@ async function handleSave() {
   console.log("Salvando nova preferência:", newPreference);
 
   try {
-    const response = await fetch(`/users/${userId}/preference`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ preference: newPreference }),
-    });
+    const response = await fetch(
+      `https://destined-app-back.onrender.com/api/users/${userId}/preference`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ preference: newPreference }),
+      }
+    );
 
     const data = await response.json();
 
