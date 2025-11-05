@@ -103,7 +103,7 @@ async function fetchMatches() {
     if (response.ok) {
       const formattedMatches = data.map((match) => ({
         ...match,
-        photos: match.photos ? match.photos.map((p) => `/api/${p}`) : [],
+        photos: match.photos ? match.photos.map((p) => `https://destined-app-back.onrender.com/${p}`) : [],
       }));
 
       matches.value = formattedMatches;
