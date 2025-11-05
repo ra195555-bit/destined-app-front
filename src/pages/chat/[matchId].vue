@@ -132,7 +132,7 @@ async function fetchMatchUser() {
         const { user } = await userResponse.json();
         matchUser.value = {
           ...user,
-          photos: user.photos ? user.photos.map((p) => `/api/${p}`) : [],
+          photos: user.photos ? user.photos.map((p) => `https://destined-app-back.onrender.com/${p}`) : [],
         };
       }
     }
