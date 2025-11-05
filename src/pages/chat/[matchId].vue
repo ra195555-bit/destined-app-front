@@ -103,11 +103,14 @@ async function fetchMatchUser() {
   if (!token) return;
 
   try {
-    const response = await fetch(`/matches/${matchId.value}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `https://destined-app-back.onrender.com/matches/${matchId.value}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (response.ok) {
       const match = await response.json();
@@ -116,11 +119,14 @@ async function fetchMatchUser() {
           ? match.userTwoId
           : match.userOneId;
 
-      const userResponse = await fetch(`/users/${otherUserId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const userResponse = await fetch(
+        `https://destined-app-back.onrender.com/users/${otherUserId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (userResponse.ok) {
         const { user } = await userResponse.json();
@@ -145,13 +151,16 @@ async function fetchMessages() {
   }
 
   try {
-    const response = await fetch(`/matches/${matchId.value}/messages`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `https://destined-app-back.onrender.com/matches/${matchId.value}/messages`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const data = await response.json();
     console.log("Fetched messages:", data);
     if (response.ok) {
@@ -176,14 +185,17 @@ async function handleSendMessage() {
   newMessage.value = "";
 
   try {
-    const response = await fetch(`/matches/${matchId.value}/messages`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ content: content }),
-    });
+    const response = await fetch(
+      `https://destined-app-back.onrender.com/matches/${matchId.value}/messages`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ content: content }),
+      }
+    );
 
     const newMsgData = await response.json();
 

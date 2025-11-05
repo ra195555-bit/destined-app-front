@@ -172,7 +172,7 @@ async function handleRegister() {
 
   try {
     const response = await fetch(
-      "https://destined-app-back.onrender.com/api/users",
+      "https://destined-app-back.onrender.com/users",
       {
         method: "POST",
         headers: {

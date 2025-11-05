@@ -88,7 +88,7 @@ async function fetchMatches() {
   console.log("Buscando matches do /matches...");
   try {
     const response = await fetch(
-      "https://destined-app-back.onrender.com/api/matches",
+      "https://destined-app-back.onrender.com/matches",
       {
         method: "GET",
         headers: {

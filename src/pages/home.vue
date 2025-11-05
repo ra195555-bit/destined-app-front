@@ -108,7 +108,7 @@ async function fetchUsers() {
   console.log("Buscando perfis do /discovery...");
   try {
     const response = await fetch(
-      "https://destined-app-back.onrender.com/api/discovery",
+      "https://destined-app-back.onrender.com/discovery",
       {
         method: "GET",
         headers: {
@@ -149,7 +149,7 @@ async function handleLike() {
 
   try {
     const response = await fetch(
-      "https://destined-app-back.onrender.com/api/likes",
+      "https://destined-app-back.onrender.com/likes",
       {
         method: "POST",
         headers: {

@@ -193,7 +193,7 @@ async function handleImageUpload() {
 
   try {
     const response = await fetch(
-      `https://destined-app-back.onrender.com/api/users/${userId}/profile-image`,
+      `https://destined-app-back.onrender.com/users/${userId}/profile-image`,
       {
         method: "PUT",
         headers: {
@@ -236,7 +236,7 @@ async function handleSave() {
 
   try {
     const response = await fetch(
-      `https://destined-app-back.onrender.com/api/users/${userId}/preference`,
+      `https://destined-app-back.onrender.com/users/${userId}/preference`,
       {
         method: "PUT",
         headers: {

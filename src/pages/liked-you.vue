@@ -87,7 +87,7 @@ async function fetchLikedUsers() {
   console.log("Buscando perfis do /likes/who-liked-me...");
   try {
     const response = await fetch(
-      "https://destined-app-back.onrender.com/api/likes/who-liked-me",
+      "https://destined-app-back.onrender.com/likes/who-liked-me",
       {
         method: "GET",
         headers: {

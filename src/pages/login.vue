@@ -100,7 +100,7 @@ async function handleLogin() {
 
   try {
     const response = await fetch(
-      "https://destined-app-back.onrender.com/api/login",
+      "https://destined-app-back.onrender.com/login",
       {
         method: "POST",
         headers: {

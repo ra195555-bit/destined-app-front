@@ -68,9 +68,7 @@ definePage({
 const router = useRouter();
 const authStore = useAuthStore();
 
-
 const selectedInterests = ref([]);
-
 
 const allInterests = ref([
   { text: "Photography", value: "photography", icon: "mdi-camera" },
@@ -99,7 +97,7 @@ function toggleInterest(value) {
 }
 
 function goBack() {
-  router.go(-1); 
+  router.go(-1);
 }
 
 function skip() {
@@ -107,7 +105,6 @@ function skip() {
 }
 
 async function handleContinue() {
-  
   const token = authStore.token;
   const userId = authStore.user.id;
 
@@ -120,7 +117,7 @@ async function handleContinue() {
 
   try {
     const response = await fetch(
-      `https://destined-app-back.onrender.com/api/users/${userId}/interests`,
+      `https://destined-app-back.onrender.com/users/${userId}/interests`,
       {
         method: "PUT",
         headers: {
@@ -135,7 +132,7 @@ async function handleContinue() {
 
     if (response.ok) {
       console.log("Interesses salvos!", data.message);
-      
+
       router.push("/home");
     } else {
       console.error("Erro do servidor:", data.message);
@@ -181,7 +178,7 @@ async function handleContinue() {
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
   border: 2px solid transparent;
-  margin: 8px 4px; 
+  margin: 8px 4px;
 }
 
 /* Estilo do chip QUANDO SELECIONADO (v-chip--selected) */
