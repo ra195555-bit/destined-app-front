@@ -16,9 +16,6 @@
           :loading="isLoading"
         >
           Recarregar
-          <template v-slot:loader>
-            <v-progress-circular indeterminate></v-progress-circular>
-          </template>
         </v-btn>
       </div>
 
@@ -41,7 +38,7 @@
         :src="
           usersToDiscover[0].photos && usersToDiscover[0].photos.length > 0
             ? usersToDiscover[0].photos[0]
-            : 'https://via.placeholder.com/350x500?text=Sem+Foto'
+            : '@/assets/Avatar-user.jpg'
         "
         gradient="to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%"
       >
@@ -167,22 +164,10 @@ async function handleLike() {
         console.log("É UM MATCH! Navegando para a tela de sucesso...");
         console.log("userToLike:", userToLike);
 
-        const myPhoto =
-          authStore.user.photos && authStore.user.photos.length > 0
-            ? `https://destined-app-back.onrender.com/api/${authStore.user.photos[0]}`
-            : "https://via.placeholder.com/100?text=Eu";
-
-        const theirPhoto =
-          userToLike.photos && userToLike.photos.length > 0
-            ? userToLike.photos[0]
-            : "https://via.placeholder.com/100?text=Match";
-
         router.push({
           name: "/match-success",
           query: {
             matchId: data.matchId,
-            myPhoto: myPhoto,
-            theirPhoto: theirPhoto,
             theirName: userToLike.name,
           },
         });

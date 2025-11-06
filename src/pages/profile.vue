@@ -49,7 +49,7 @@
     <v-row justify="center">
       <v-col cols="12" sm="8" md="4">
         <v-sheet class="pa-0 custom-sheet" elevation="0">
-          <p class="form-label">Nome Completo (Não pode ser alterado)</p>
+          <p class="form-label">Nome Completo</p>
           <v-text-field
             v-model="name"
             label="Seu nome completo"
@@ -81,6 +81,7 @@
             rounded="xl"
             density="comfortable"
             class="mb-4 custom-input"
+            disabled
           ></v-text-field>
 
           <p class="form-label">Eu procuro por</p>
@@ -112,7 +113,6 @@ import { useAuthStore } from "@/stores/auth.js";
 const router = useRouter();
 const authStore = useAuthStore();
 
-// "Caixinhas" para os dados do formulário
 const name = ref("");
 const email = ref("");
 const dateOfBirthday = ref("");
@@ -131,23 +131,6 @@ const imageUrl = computed(() => {
   return null;
 });
 
-/**
- * Converte uma data (string ou Date) para o formato YYYY-MM-DD,
- * que é o único que o <input type="date"> aceita.
- */
-function formatDateForInput(dateString) {
-  if (!dateString) return "";
-  try {
-    const date = new Date(dateString);
-    // toISOString() retorna "2025-11-01T20:30:00.000Z"
-    // .split('T')[0] pega só o "2025-11-01"
-    return date.toISOString().split("T")[0];
-  } catch (error) {
-    console.error("Erro ao formatar data:", error);
-    return "";
-  }
-}
-
 // Quando a página é montada, preenchemos o formulário
 onMounted(() => {
   if (authStore.user) {
@@ -155,10 +138,19 @@ onMounted(() => {
     email.value = authStore.user.email;
     preference.value = authStore.user.preference;
 
-    dateOfBirthday.value = formatDateForInput(authStore.user.dateOfBirthday);
+    try {
+      dateOfBirthday.value = authStore.user.dateOfBirthday
+        ? new Date(authStore.user.dateOfBirthday).toISOString().split("T")[0]
+        : "";
+    } catch (error) {
+      console.error("Erro ao formatar data:", error);
+      dateOfBirthday.value = "";
+    }
 
     userPhotos.value = authStore.user.photos
-      ? authStore.user.photos.map((p) => `/api/${p}`)
+      ? authStore.user.photos.map(
+          (p) => `https://destined-app-back.onrender.com/${p}`
+        )
       : [];
   } else {
     router.push("/login");
@@ -223,7 +215,6 @@ async function handleImageUpload() {
 async function handleSave() {
   const token = authStore.token;
 
-  // Checagem de segurança
   if (!token || !authStore.user || !authStore.user.id) {
     console.error("Erro: Usuário não está logado para salvar.");
     return router.push("/login");
@@ -262,8 +253,7 @@ async function handleSave() {
 }
 </script>
 
-<style scoped>
-/* Copiamos os estilos que já funcionam do seu register.vue */
+<style>
 .custom-sheet {
   background-color: transparent !important;
 }
@@ -272,29 +262,27 @@ async function handleSave() {
   margin-bottom: 8px;
   color: white;
 }
-.custom-input :deep(.v-field__overlay) {
+.custom-input .v-field__overlay {
   background-color: rgba(255, 255, 255, 0.1);
 }
-.custom-input :deep(.v-field__outline) {
+.custom-input .v-field__outline {
   border-style: none !important;
 }
-.custom-input :deep(.v-field__input) {
+.custom-input .v-field__input {
   color: white !important;
 }
 /* Cor do texto desabilitado (para o email) */
-.custom-input :deep(.v-field--disabled .v-field__input) {
+.custom-input .v-field--disabled .v-field__input {
   color: rgba(255, 255, 255, 0.5) !important;
 }
-.custom-input :deep(.v-label.v-field-label) {
+.custom-input .v-label.v-field-label {
   color: rgba(255, 255, 255, 0.7) !important;
 }
-.custom-input :deep(input[type="date"]::-webkit-calendar-picker-indicator) {
-  filter: invert(1);
-}
-.custom-radio :deep(.v-label) {
+
+.custom-radio .v-label {
   color: white;
 }
-.custom-radio :deep(.v-radio .v-icon) {
+.custom-radio .v-radio .v-icon {
   color: #da327f;
 }
 .custom-gradient-btn {

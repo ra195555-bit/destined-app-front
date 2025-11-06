@@ -37,5 +37,6 @@ const activeTab = ref("home");
 <style scoped>
 .v-bottom-navigation {
   background-color: #1a0a33;
+  color: white !important;
 }
 </style>

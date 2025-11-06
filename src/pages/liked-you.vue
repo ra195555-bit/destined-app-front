@@ -40,7 +40,7 @@
               :src="
                 user.photos && user.photos.length > 0
                   ? user.photos[0]
-                  : 'https://via.placeholder.com/250x300?text=Sem+Foto'
+                  : '@/assets/Avatar-user.jpg'
               "
               class="user-card"
               rounded="xl"
@@ -114,8 +114,8 @@ async function fetchLikedUsers() {
 </script>
 
 <style scoped>
+/* Fundo escuro para o card */
 .user-card {
-  /* Fundo escuro para o card */
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
 }

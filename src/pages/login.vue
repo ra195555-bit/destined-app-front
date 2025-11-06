@@ -89,7 +89,7 @@ const router = useRouter();
 const authStore = useAuthStore();
 
 function goBack() {
-  router.go(-1);
+  router.push("/register");
 }
 
 async function handleLogin() {
@@ -125,46 +125,46 @@ async function handleLogin() {
 }
 </script>
 
-<style scoped>
-.custom-sheet {
+<style>
+.login-layout-container .custom-sheet {
   background-color: transparent !important;
 }
 
-.title-wrapper {
+.login-layout-container .title-wrapper {
   position: relative;
   display: inline-block;
 }
 
-.heart-icon {
+.login-layout-container .heart-icon {
   position: absolute;
-  top: -5px;
-  left: 54%;
+  top: -3px;
+  left: 48%;
   font-size: 1.1rem;
 }
 
 /*  CSS DO INPUT  */
-.custom-input :deep(.v-field__overlay) {
+.login-layout-container .custom-input .v-field__overlay {
   background-color: rgba(255, 255, 255, 0.1);
 }
-.custom-input :deep(.v-field__outline) {
+.login-layout-container .custom-input .v-field__outline {
   border-style: none !important;
 }
-.custom-input :deep(.v-field__input) {
+.login-layout-container .custom-input .v-field__input {
   color: white !important;
 }
-.custom-input :deep(.v-label.v-field-label) {
+.login-layout-container .custom-input .v-label.v-field-label {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /*  Botão com gradiente roxo/rosa e arredondado */
-.custom-gradient-btn {
+.login-layout-container .custom-gradient-btn {
   background: linear-gradient(to right, #da327f 0%, #a134d1 100%) !important;
   color: white !important;
   font-weight: bold;
   border-radius: 24px;
 }
 
-.signup-link {
+.login-layout-container .signup-link {
   color: #da327f;
   text-decoration: none;
   font-weight: bold;

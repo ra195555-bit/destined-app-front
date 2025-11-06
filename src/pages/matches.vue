@@ -41,7 +41,7 @@
                   :src="
                     match.photos && match.photos.length > 0
                       ? match.photos[0]
-                      : 'https://via.placeholder.com/50?text=Sem+Foto'
+                      : '@/assets/Avatar-user.jpg'
                   "
                   cover
                 ></v-img>
@@ -103,7 +103,11 @@ async function fetchMatches() {
     if (response.ok) {
       const formattedMatches = data.map((match) => ({
         ...match,
-        photos: match.photos ? match.photos.map((p) => `/api/${p}`) : [],
+        photos: match.photos
+          ? match.photos.map(
+              (p) => `https://destined-app-back.onrender.com/${p}`
+            )
+          : [],
       }));
 
       matches.value = formattedMatches;

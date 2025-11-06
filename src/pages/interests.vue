@@ -85,19 +85,8 @@ const allInterests = ref([
   { text: "Fitness", value: "fitness", icon: "mdi-dumbbell" },
 ]);
 
-const isSelected = (value) => selectedInterests.value.includes(value);
-
-function toggleInterest(value) {
-  const index = selectedInterests.value.indexOf(value);
-  if (index > -1) {
-    selectedInterests.value.splice(index, 1);
-  } else {
-    selectedInterests.value.push(value);
-  }
-}
-
 function goBack() {
-  router.go(-1);
+  router.push("/login");
 }
 
 function skip() {
@@ -144,8 +133,8 @@ async function handleContinue() {
 </script>
 
 <style scoped>
+/* Força o layout a ter 3 blocos como no login */
 .interests-container {
-  /* Força o layout a ter 3 blocos (como no login) */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -164,24 +153,22 @@ async function handleContinue() {
   padding-left: 16px !important;
 }
 
-/* Estilo do chip QUANDO SELECIONADO (Borda roxa + Fundo escuro) */
+/* Estilo do chip quando selecionado  (Borda roxa + Fundo escuro) */
 .interest-chip.v-chip--selected {
   background-color: #1a0a33 !important;
   color: white !important;
-  /* Borda roxa sólida (como na sua foto) */
   border: 2px solid #a134d1 !important;
 }
 
 /* Estilo dos chips (etiquetas) */
 .interest-chip {
-  /* Cor do fundo do chip não selecionado */
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
   border: 2px solid transparent;
   margin: 8px 4px;
 }
 
-/* Estilo do chip QUANDO SELECIONADO (v-chip--selected) */
+/* Estilo do chip quando selecionado (v-chip--selected) */
 .interest-chip.v-chip--selected {
   /* Fundo escuro */
   background-color: #1a0a33;

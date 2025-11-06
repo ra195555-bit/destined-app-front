@@ -2,12 +2,8 @@
   <v-sheet class="match-dialog-sheet d-flex flex-column pa-4">
     <div class="flex-grow-1 d-flex flex-column align-center justify-center">
       <div class="avatars-container">
-        <v-avatar color="#6A1B9A" size="120" class="avatar-left">
-          <v-img :src="myPhoto"></v-img>
-        </v-avatar>
-        <v-avatar color="#D81B60" size="120" class="avatar-right">
-          <v-img :src="theirPhoto"></v-img>
-        </v-avatar>
+        <v-avatar color="#6A1B9A" size="120" class="avatar-left"> </v-avatar>
+        <v-avatar color="#D81B60" size="120" class="avatar-right"> </v-avatar>
         <v-icon class="heart-icon">mdi-heart</v-icon>
       </div>
 
@@ -48,9 +44,7 @@ const route = useRoute();
 const router = useRouter();
 
 const matchId = ref(route.query.matchId || "");
-const myPhoto = ref(route.query.myPhoto || "");
-const theirPhoto = ref(route.query.theirPhoto || "");
-const theirName = ref(route.query.theirName || "Belle");
+const theirName = ref(route.query.theirName || "");
 
 function keepSwiping() {
   router.push("/home");

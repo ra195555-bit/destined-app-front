@@ -157,7 +157,7 @@ const imageUrl = computed(() => {
 });
 
 function goBack() {
-  router.go(-1);
+  router.push("/");
 }
 
 async function handleRegister() {
@@ -197,56 +197,54 @@ async function handleRegister() {
 }
 </script>
 
-<style scoped>
-.custom-sheet {
+<style>
+.register-container .custom-sheet {
   background-color: transparent !important;
 }
 
-.form-label {
+.register-container .form-label {
   font-weight: bold;
   margin-bottom: 8px;
   color: white;
 }
 
-/* Estilo dos campos de texto (igual ao login) */
-.custom-input :deep(.v-field__overlay) {
+/* Estilo dos campos de texto */
+.register-container .custom-input .v-field__overlay {
   background-color: rgba(255, 255, 255, 0.1);
 }
-.custom-input :deep(.v-field__outline) {
+.register-container .custom-input .v-field__outline {
   border-style: none !important;
 }
-.custom-input :deep(.v-field__input) {
+.register-container .custom-input .v-field__input {
   color: white !important;
 }
-.custom-input :deep(.v-label.v-field-label) {
+.register-container .custom-input .v-label.v-field-label {
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* Estilo dos botões de rádio */
-.custom-radio :deep(.v-label) {
+.register-container .custom-radio .v-label {
   color: white;
 }
 /* Cor da bolinha quando selecionada */
-.custom-radio :deep(.v-radio .v-icon) {
+.register-container .custom-radio .v-radio .v-icon {
   color: #da327f;
 }
 
 /* Botão com gradiente roxo/rosa e arredondado */
-.custom-gradient-btn {
+.register-container .custom-gradient-btn {
   background: linear-gradient(to right, #da327f 0%, #a134d1 100%) !important;
   color: white !important;
   font-weight: bold;
   border-radius: 24px;
 }
 
-.avatar-wrapper {
+.register-container .avatar-wrapper {
   position: relative;
-  /* Precisa disso para o v-btn absoluto se alinhar
-     ao avatar e não ao <v-col> */
   display: inline-block;
 }
 
-.camera-btn {
+.register-container .camera-btn {
   position: absolute;
   bottom: 0;
   right: 0;

@@ -16,7 +16,6 @@
 
     <v-btn
       class="get-started-btn"
-      variant="text"
       size="large"
       append-icon="mdi-arrow-right"
       @click="goToRegister"
@@ -43,7 +42,6 @@ function goToRegister() {
     rgba(15, 5, 30, 1) 70%,
     rgba(5, 0, 10, 1) 100%
   );
-  /* 'position: relative' é o "contexto" para os 'absolute' abaixo */
   position: relative;
   overflow: hidden;
   height: 100vh;
@@ -60,14 +58,13 @@ function goToRegister() {
   z-index: 0;
 }
 
-/* 3. Bloco de Texto (Perfeitamente Centrado) */
+/*  Bloco de Texto (Perfeitamente Centrado) */
 .text-block {
   position: absolute;
-  top: 50%; /* 50% do topo */
-  left: 50%; /* 50% da esquerda */
-  transform: translate(-50%, -50%); /* Ajusta para o centro exato */
-  z-index: 1; /* Na frente do SVG */
-
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
   text-align: center;
   width: 90%;
 }
@@ -84,21 +81,16 @@ function goToRegister() {
   font-size: 1.1rem;
 }
 
-/* 4. Estilo do Botão (Absoluto na Base) */
+/* Estilo do Botão (Absoluto na Base) */
 .get-started-btn {
   position: absolute;
-  bottom: 40px; /* 40px do fundo */
-  left: 50%; /* 50% da esquerda */
-  transform: translateX(-50%); /* Ajusta para o centro horizontal */
-  z-index: 1; /* Na frente do SVG */
-
-  /* Estilos do Gradiente */
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
   font-size: 1.2rem;
   font-weight: bold;
-
   background: linear-gradient(to right, #dd3562 0%, #8354ff 100%);
-
-  background-clip: text;
-  color: #dd3562;
+  color: white;
 }
 </style>

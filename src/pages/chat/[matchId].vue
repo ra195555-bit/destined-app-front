@@ -132,7 +132,11 @@ async function fetchMatchUser() {
         const { user } = await userResponse.json();
         matchUser.value = {
           ...user,
-          photos: user.photos ? user.photos.map((p) => `/api/${p}`) : [],
+          photos: user.photos
+            ? user.photos.map(
+                (p) => `https://destined-app-back.onrender.com/${p}`
+              )
+            : [],
         };
       }
     }
@@ -214,7 +218,7 @@ async function handleSendMessage() {
 }
 </script>
 
-<style scoped>
+<style>
 /* Cor do balão das "nossas" mensagens (direita) */
 .my-message {
   background-color: #da327f;
@@ -226,7 +230,7 @@ async function handleSendMessage() {
   color: white;
 }
 /* Cor do campo de digitação */
-.chat-input :deep(.v-field) {
+.chat-input .v-field {
   background-color: rgba(255, 255, 255, 0.1) !important;
   color: white;
 }
