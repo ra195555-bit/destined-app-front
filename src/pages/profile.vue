@@ -201,7 +201,9 @@ async function handleImageUpload() {
       console.log("Foto de perfil atualizada!", data.message);
       authStore.setAuthData(token, data.user);
       userPhotos.value = data.user.photos
-        ? data.user.photos.map((p) => `/api/${p}`)
+        ? data.user.photos.map(
+            (p) => `https://destined-app-back.onrender.com/${p}`
+          )
         : [];
       profileImage.value = null;
     } else {
